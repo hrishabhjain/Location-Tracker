@@ -1,0 +1,77 @@
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+//    }
+//}
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.example.location.locationtracker"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true //important
+
+    }
+    buildTypes {
+        buildTypes {
+            debug {
+                minifyEnabled false
+                resValue "string", "API_URL", "https://api.yourdomain.com/v1//"
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+            release {
+                minifyEnabled false
+                resValue "string", "API_URL", "https://api.yourdomain.com/v1//"
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    testCompile 'junit:junit:4.12'
+
+
+    //orm-lite for database
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+
+    //Rxjava
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
+
+    //Dagger
+    compile "com.google.dagger:dagger:2.8"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.8"
+
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+
+    //OkHttp
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okio:okio:1.7.0'
+
+    //Gson
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+
+    //firebase
+    compile 'com.firebase:firebase-jobdispatcher:0.7.0'
+
+    //google play service
+    compile 'com.google.android.gms:play-services:11.0.2'
+
+}
